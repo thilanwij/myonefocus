@@ -33,6 +33,25 @@ a {
   justify-content: center;
   padding: 2rem;
   height: 100vh;
+  position: relative;
+}
+
+.closebar {
+  /* display: flex; */
+  /* margin-bottom: auto;
+  margin-left: auto; */
+  color: white;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  opacity: 0.5;
+  z-index: 10;  
+}
+
+.closebar > i {
+  padding: 0 0 1.5em 1.5em;
+  font-size: 3em;
+  
 }
 
 #container {
