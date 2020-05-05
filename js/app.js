@@ -7,6 +7,7 @@ var index = 0;
 var lines, nonEmpty;
 var theLocalValue;
 let testArray; //tsting purposes
+const closeBtn = document.querySelector(".closebar");
 
 
 //Event for when the user CLICKS THE START TASKS BUTTON
@@ -97,6 +98,12 @@ container.addEventListener('click', nextTask);
     }
   
   }
+//if press X close button, close pop up container
+closeBtn.addEventListener('click', function(){
+  container.style.display = "none";
+
+});
+
 //plays a ding sfx when you tap on the screen to move onto next task
 function ding(){
   var audio = new Audio('../audio/ding.ogg');
