@@ -99,7 +99,8 @@ container.addEventListener('click', nextTask);
   
   }
 //if press X close button, close pop up container
-closeBtn.addEventListener('click', function(){
+closeBtn.addEventListener('click', function(event){
+  event.stopPropagation();
   container.style.display = "none";
 
 });
