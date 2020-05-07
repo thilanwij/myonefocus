@@ -2,11 +2,16 @@
 A repo for my current project "My One Focus"
 
 Current version:
+
+v1.2 Date 5/7/20
+-Ismael added functionality to randomize items in the list array
+
 v1.1 Date: 4/26/20 & 5/4/20
 - Now when user accidentally refreshes page, the tasks he had previously will still be there (data persistence)
 - Local storage resets once done with last task
 - Fixed Long tasks going out of screen
 - Fixed bug that allowed you to submit empty string and gets stuck
+
  
 v1.0 Date: 4/25/20
 - Add tasks to the list
