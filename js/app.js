@@ -3,15 +3,12 @@ let button = document.getElementById("thebutton");
 var next = document.getElementById("next");
 var container = document.getElementById("container");
 var taskh1 = document.getElementById("taskh1");
-var index = 0;
 var lines, nonEmpty;
 var theLocalValue;
 let testArray; //tsting purposes
 
-
 //Event for when the user CLICKS THE START TASKS BUTTON
 button.addEventListener('click', function(){
-
   if(area.value == ""){
     alert("Please insert some tasks.");
   }
@@ -20,20 +17,24 @@ button.addEventListener('click', function(){
   //When clicking the main button, get the array and split each item on their own
   lines = area.value.replace(/\r\n/g,"\n").split("\n"); //'lines' is indeed is an array
   
-  
   //removes any spaces on the lines array and puts it into a new cleaner array
   nonEmpty = lines.filter(function(e) {
     return String(e).trim();
 });
-console.log(nonEmpty);
-  
+
   //display popup
   container.style.display = "flex";
+
+  // generate a random number within the tasks array
+  let rand = Math.floor(Math.random() * nonEmpty.length);
   
   //display first task
-  taskh1.innerHTML = nonEmpty[index];
+  taskh1.innerHTML = nonEmpty[rand];
 
-  document.title = nonEmpty[0] + " | My One Focus";
+  document.title = nonEmpty[rand] + " | My One Focus";
+
+  // remove the current element from the array
+  nonEmpty = nonEmpty.filter((task, i) => rand !== i);
 
   //if support localstorage, do it. If not, don't.
   if (typeof(Storage) !== "undefined") {
@@ -55,48 +56,43 @@ theLocalValue = localStorage.getItem('value');
 
 //here you will re-add the line breaks to this array
 
-
 //here you will assign the value with the spaces back into the textarea field
 area.value = theLocalValue;
 
-
-
-
 // When you click the next button, it moves onto the next task in the list
 container.addEventListener('click', nextTask);
+function nextTask() {
+  // generate a random number within the tasks array
+  let rand = Math.floor(Math.random() * nonEmpty.length);
 
-
-  function nextTask() {
-    //increment the global index variable by one
-    index++;
+  //update to show the next task
+  taskh1.innerHTML = nonEmpty[rand];
   
-    //update to show the next task
-    taskh1.innerHTML = nonEmpty[index];
-    
-    // alert(lines);
-    // alert(nonEmpty);
-    ding();
+  // alert(lines);
+  // alert(nonEmpty);
+  ding();
 
-    //if on the last array task, remove popup bg
-    if (index === nonEmpty.length) {
-      container.style.display = "none";
-      area.value = "";
-      index = 0;
-      nonEmpty = [];
+  //if on the last array task, remove popup bg
+  if (nonEmpty.length === 0) {
+    container.style.display = "none";
+    area.value = "";
+    nonEmpty = [];
 
-      //removes the data from local storage because you don't need it anymore
-      localStorage.removeItem('value');
+    //removes the data from local storage because you don't need it anymore
+    localStorage.removeItem('value');
 
-      //resets the document title to normal
-      document.title = "My One Focus - Focus on One Task at a Time";
+    //resets the document title to normal
+    document.title = "My One Focus - Focus on One Task at a Time";
 
-    }
-    else{
-    //updates the doc title to show current task name
-    document.title = nonEmpty[index] + " | My One Focus";
-    }
-  
   }
+  else{
+  //updates the doc title to show current task name
+  document.title = nonEmpty[rand] + " | My One Focus";
+  // remove the current element from the array
+  nonEmpty = nonEmpty.filter((task, i) => rand !== i);
+  }
+
+}
 //plays a ding sfx when you tap on the screen to move onto next task
 function ding(){
   var audio = new Audio('../audio/ding.ogg');
