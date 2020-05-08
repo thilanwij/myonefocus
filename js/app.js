@@ -66,11 +66,11 @@ function nextTask() {
   let rand = Math.floor(Math.random() * nonEmpty.length);
 
   //update to show the next task
-  taskh1.innerHTML = nonEmpty[rand];
+  taskh1.textContent = nonEmpty[rand];
   
   // alert(lines);
   // alert(nonEmpty);
-  ding();
+  // ding();
 
   //if on the last array task, remove popup bg
   if (nonEmpty.length === 0) {
@@ -94,9 +94,9 @@ function nextTask() {
 
 }
 //plays a ding sfx when you tap on the screen to move onto next task
-function ding(){
-  var audio = new Audio('../audio/ding.ogg');
-  audio.play();
-  audio.volume = 0.05;
-};
+// function ding(){
+//   var audio = new Audio('../audio/ding.ogg');
+//   audio.play();
+//   audio.volume = 0.05;
+// };
 
